@@ -1,8 +1,9 @@
 import React from "react";
 import "./Home.css";
 import Navbar from "../../component/Navbar";
-import { Avatar, Card, Image } from "antd";
-import { HeartOutlined } from "@ant-design/icons";
+import { Avatar, Card, Image, FloatButton } from "antd";
+import { HeartOutlined, PlusOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -39,6 +40,8 @@ const images = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Navbar />
@@ -51,7 +54,6 @@ const Home = () => {
                 <Card
                   key={i}
                   hoverable
-                  // cover={<img alt="example" src={c.image} />}
                   style={{ maxWidth: "500px" }}
                   actions={[<HeartOutlined key="heart" />]}>
                   <Meta
@@ -73,6 +75,13 @@ const Home = () => {
           </div>
         ))}
       </div>
+
+      <FloatButton
+        icon={<PlusOutlined />}
+        type="default"
+        style={{ right: 24 }}
+        onClick={() => navigate("/new-post")}
+      />
     </>
   );
 };

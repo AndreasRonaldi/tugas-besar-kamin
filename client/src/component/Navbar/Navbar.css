@@ -1,0 +1,31 @@
+.navigationBar {
+  /* background-color: #5a8fff; */
+  background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  gap: 12px;
+}
+
+.forminputLogin form {
+  display: flex;
+  justify-content: center;
+}
+
+.login-form-forgot {
+  float: right;
+}
+.ant-col-rtl .login-form-forgot {
+  float: left;
+}
+.login-form-button {
+  width: 100%;
+}
+.site-form-item-icon {
+  margin-right: 4px;
+}
