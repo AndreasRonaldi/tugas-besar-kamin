@@ -1,34 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Post.css";
 import { Button, Form, Input, Typography, Upload } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const { Title } = Typography;
 
 const Post = () => {
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const onFinish = (values) => {
-    console.log(values);
-    // const { email, password } = values;
-    // if (email === "test@gmail.com" && password === "test123") navigate("/");
+  const getData = async () => {
+    try {
+      const { data } = await axios.get(`http://localhost:8080/post?id=${id}`);
+      setData(data);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
   };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <main>
-      <div className="wrapperLogin">
-        <Title>Login</Title>
-        <Form onFinish={onFinish} autoComplete="off">
-          <Form.Item label="test image" name={"image"}>
-            <Upload />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" block>
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-      </div>
+      <div className="wrapperLogin"></div>
     </main>
   );
 };

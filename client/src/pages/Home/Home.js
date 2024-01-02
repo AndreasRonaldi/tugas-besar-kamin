@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Navbar from "../../component/Navbar";
 import { Avatar, Card, Image, FloatButton } from "antd";
 import { HeartOutlined, PlusOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const { Meta } = Card;
 
@@ -40,7 +41,22 @@ const images = [
 ];
 
 const Home = () => {
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
+
+  const getData = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:8080/posts");
+      setData(data);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
@@ -48,27 +64,31 @@ const Home = () => {
       <div className="wrapperHome">
         {new Array(3).fill().map((c, idx) => (
           <div className="wrapperPost" key={idx}>
-            {images
+            {data
               .filter((_, i) => i % 3 === idx)
               .map((c, i) => (
                 <Card
                   key={i}
                   hoverable
+                  onClick={() => navigate(`/post/${c.id}`)}
                   style={{ maxWidth: "500px" }}
                   actions={[<HeartOutlined key="heart" />]}>
                   <Meta
                     avatar={
                       <Avatar
-                        src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${
-                          i + idx
-                        }`}
+                        src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${c.email}`}
                       />
                     }
                     title={c.title}
-                    description={c.description}
+                    description={c.email}
                   />
                   <div className="wrapperImg">
-                    <Image alt="example" src={c.image} height="100%" />
+                    <Image
+                      alt="example"
+                      src={c.thumbUrl}
+                      height="100%"
+                      preview={false}
+                    />
                   </div>
                 </Card>
               ))}

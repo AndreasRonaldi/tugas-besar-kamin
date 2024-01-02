@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 
 import { auth, login, logout, token, signup } from "./util/auth.js";
-import { add_post, get_post, get_posts } from "./api/post.js";
+import { add_post, get_post, get_posts, like_post } from "./api/post.js";
 
 const PORT = 8080;
 const app = express();
@@ -19,8 +19,9 @@ app.post("/signup", signup);
 
 app.get("/amiloggedin", auth, (_, res) => res.json({ msg: "yes" }));
 
-app.get("/posts", auth, get_posts);
-app.get("/post", auth, get_post);
-app.post("/post", auth, add_post);
+app.get("/posts", get_posts); // GET ALL POST
+app.get("/post", get_post); // GET SINGLE POST
+app.post("/post", auth, add_post); // ADD NEW POST
+app.post("/like_post", auth, like_post); // LIKE / DISLIKE POST
 
 app.listen(PORT);
