@@ -36,3 +36,12 @@ CREATE TABLE similar_post (
     FOREIGN KEY (id_post) REFERENCES post(id) ON DELETE CASCADE,
     FOREIGN KEY (id_post_similar) REFERENCES post(id) ON DELETE CASCADE
 );
+
+CREATE TABLE comment_post (
+    id_post int(10) NOT NULL,
+    id_user int(10) NOT NULL,
+    comment MEDIUMTEXT NOT NULL,
+
+    FOREIGN KEY (id_post) REFERENCES post(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_user) REFERENCES `users`(id) ON DELETE CASCADE
+);

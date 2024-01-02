@@ -12,7 +12,7 @@
   background-color: #f0f2f5;
 }
 
-.wrapperPost {
+.wrapperPosts {
   display: flex;
   flex-direction: column;
   gap: 40px;

@@ -1,0 +1,58 @@
+.wrapperPost {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 0;
+  overflow: hidden;
+}
+
+.wrapperImage {
+  width: 100%;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapperImage img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+
+.wrapperDesc {
+  background-color: #f0f2f5;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.btnBack {
+  position: fixed;
+  z-index: 2;
+  top: 20px;
+  left: 20px;
+}
+
+.wrapperSimilarPost {
+  position: absolute;
+  height: auto;
+  bottom: 0;
+  width: fit-content;
+  max-width: calc(100% - 88px * 2);
+  border-radius: 12px;
+  margin: 24px 88px;
+  padding: 0 12px;
+  background: white;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+
+.imgSimilar {
+  transition: transform 0.15s ease-in-out;
+}
+
+.imgSimilar:hover {
+  transform: scale(1.05);
+}

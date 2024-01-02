@@ -6,7 +6,7 @@ import { Button, App, Dropdown, Tooltip } from "antd";
 import { UserOutlined, ExclamationOutlined } from "@ant-design/icons";
 import axios from "axios";
 
-const NavBar = () => {
+const NavBar = ({ setLoggedHome }) => {
   const [useLogged, setLogged] = useState(false);
   const { message, notification } = App.useApp();
   const navigate = useNavigate();
@@ -24,6 +24,7 @@ const NavBar = () => {
       localStorage.removeItem("user");
       message.success("Logout successfully");
       setLogged(false);
+      setLoggedHome(false);
       navigate("/");
       return true;
     } catch (e) {
@@ -72,12 +73,14 @@ const NavBar = () => {
         await axios.get("http://localhost:8080/amiloggedin");
         console.log("logged in!");
         setLogged(true);
+        setLoggedHome(true);
       } catch (e) {
         console.log("not logged in!");
         setLogged(false);
+        setLoggedHome(false);
       }
-      // console.log(await testLoggedIn());
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
