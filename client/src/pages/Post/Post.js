@@ -123,6 +123,7 @@ const Post = () => {
     });
 
     console.log(data);
+    getComment();
   };
 
   return (

@@ -22,7 +22,6 @@ const Signup = () => {
       });
 
       console.log(data);
-
       navigate("/login");
     } catch (e) {
       if (e.response.status === 401)
@@ -111,7 +110,7 @@ const Signup = () => {
               type="primary"
               htmlType="submit"
               className="login-form-button">
-              Log in
+              Sign up
             </Button>
             Or <Link to="/login">login now!</Link>
           </Form.Item>

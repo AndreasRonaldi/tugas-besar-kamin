@@ -88,6 +88,7 @@ export const add_comment = async (req, res) => {
 };
 
 const size = 64;
+const threshold = 0.85;
 
 const hammingDistance = (str1, str2) => {
   let dist = 0;
@@ -115,6 +116,9 @@ const check_similar = async ({ digest, id }) => {
   // add top 3 to similar post
   for (let i = 0; i < post.length && i < 3; i++) {
     const element = post[i];
+
+    if (1 - element.diff / (size * size) < threshold) break;
+
     const sql = `insert into similar_post (id_post, id_post_similar, percentage) 
     values (?, ?, ?)`;
 
